@@ -1,0 +1,805 @@
+
+/* =========================================
+   GramHealth Monitor
+   District Health Office Style
+   CSS only — existing functionality retained
+   ========================================= */
+
+/* 1. Basic theme */
+:root {
+    --green: #276749;
+    --green-dark: #1f513a;
+    --green-light: #eaf3ed;
+    --page-bg: #f3f5f4;
+    --white: #ffffff;
+    --text: #26332d;
+    --muted: #65736b;
+    --border: #d7dfda;
+    --warning: #946200;
+    --warning-bg: #fff3cd;
+    --critical: #a32929;
+    --critical-bg: #fde8e7;
+    --blue: #285b83;
+    --blue-bg: #e8f1f8;
+    --radius: 5px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--page-bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+/* 2. Top header */
+
+.topbar {
+    min-height: 76px;
+    padding: 14px 28px;
+    background: var(--green-dark);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 4px solid #b6d3bd;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    color: var(--green-dark);
+    font-size: 29px;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.brand p {
+    margin: 2px 0 0;
+    color: #e1ebe4;
+    font-size: 13px;
+}
+
+.prototype-label {
+    padding: 5px 10px;
+    border: 1px solid #c5d9cb;
+    border-radius: 3px;
+    color: var(--white);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* 3. Main layout and sidebar */
+
+.app-layout {
+    display: grid;
+    grid-template-columns: 225px minmax(0, 1fr);
+    min-height: calc(100vh - 76px);
+}
+
+.sidebar {
+    padding: 23px 14px;
+    background: #ffffff;
+    border-right: 1px solid var(--border);
+}
+
+.menu-heading {
+    margin: 0 10px 12px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+}
+
+.nav-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    margin-bottom: 4px;
+    text-align: left;
+    color: #35463c;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.nav-button span {
+    width: 20px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.nav-button:hover {
+    background: #f0f5f1;
+}
+
+.nav-button.active {
+    color: var(--green-dark);
+    background: var(--green-light);
+    border-color: #d4e5d9;
+    font-weight: bold;
+    border-left: 4px solid var(--green);
+    padding-left: 9px;
+}
+
+.sidebar-note {
+    margin-top: 30px;
+    padding: 14px;
+    background: #f7f9f7;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--green);
+    border-radius: 3px;
+}
+
+.sidebar-note strong {
+    font-size: 13px;
+}
+
+.sidebar-note p {
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* 4. Main content */
+
+.main-content {
+    min-width: 0;
+    padding: 27px 30px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.page-heading h2 {
+    margin: 2px 0 5px;
+    color: #263c30;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.eyebrow {
+    margin: 0;
+    color: var(--green);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.page-heading .muted {
+    margin: 0;
+}
+
+.demo-badge {
+    display: inline-block;
+    padding: 5px 9px;
+    color: var(--green-dark);
+    background: var(--green-light);
+    border: 1px solid #cbded0;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* 5. Dashboard statistics */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 23px;
+}
+
+.stat-card {
+    min-width: 0;
+    padding: 17px 18px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--green);
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+.stat-card p {
+    margin: 0;
+    color: #46564c;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.stat-card h3 {
+    margin: 8px 0 4px;
+    color: var(--green-dark);
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.stat-card span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* 6. Content sections and tables */
+
+.content-card {
+    min-width: 0;
+    margin-bottom: 22px;
+    padding: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 16px;
+}
+
+.section-heading h3 {
+    margin: 0;
+    color: #2b3d32;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.section-heading .muted {
+    margin: 4px 0 0;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    font-size: 13px;
+    text-align: left;
+}
+
+thead {
+    background: #edf2ee;
+}
+
+th {
+    padding: 12px 13px;
+    color: #35483b;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+}
+
+td {
+    padding: 12px 13px;
+    color: #344239;
+    border-bottom: 1px solid #e5eae6;
+    vertical-align: middle;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+    background: #fafbfa;
+}
+
+tbody tr:hover {
+    background: #f0f5f1;
+}
+
+/* 7. Status labels */
+
+.status-badge {
+    display: inline-block;
+    margin: 1px 3px 1px 0;
+    padding: 3px 7px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.badge-good {
+    color: #24633c;
+    background: #e8f4eb;
+    border-color: #cbe3d1;
+}
+
+.badge-warning {
+    color: #795500;
+    background: var(--warning-bg);
+    border-color: #ecdba5;
+}
+
+.badge-critical {
+    color: #982727;
+    background: var(--critical-bg);
+    border-color: #f0c5c2;
+}
+
+.badge-pending {
+    color: #795500;
+    background: #fff3cd;
+    border-color: #ecdba5;
+}
+
+.badge-assigned {
+    color: #24557b;
+    background: var(--blue-bg);
+    border-color: #c8dce9;
+}
+
+.badge-resolved {
+    color: #24633c;
+    background: #e8f4eb;
+    border-color: #cbe3d1;
+}
+
+/* 8. Buttons */
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 37px;
+    padding: 9px 14px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    transition: background 0.15s ease;
+}
+
+.primary-button {
+    color: #ffffff;
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.primary-button:hover {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+}
+
+.secondary-button {
+    color: #344c3c;
+    background: #ffffff;
+    border-color: #bfcfc3;
+}
+
+.secondary-button:hover {
+    background: #edf4ef;
+}
+
+/* 9. Facility search */
+
+.search-input {
+    width: 100%;
+    max-width: 440px;
+    min-height: 40px;
+    margin: 0 0 17px;
+    padding: 10px 12px;
+    color: var(--text);
+    background: #ffffff;
+    border: 1px solid #bfcac2;
+    border-radius: 3px;
+}
+
+.search-input::placeholder {
+    color: #7b8780;
+}
+
+.search-input:focus {
+    border-color: var(--green);
+    outline: 2px solid #d7e9dc;
+}
+
+/* 10. Status report form */
+
+.notice {
+    margin-bottom: 22px;
+    padding: 13px 15px;
+    color: #594719;
+    background: #fff8e7;
+    border: 1px solid #e9d9a9;
+    border-left: 4px solid #b38b26;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 19px 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 7px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: #34463a;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    min-height: 40px;
+    padding: 9px 11px;
+    color: var(--text);
+    background: #ffffff;
+    border: 1px solid #bdc9c0;
+    border-radius: 3px;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--green);
+    outline: 2px solid #d7e9dc;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #e1e7e2;
+}
+
+/* 11. Recent issues */
+
+.recent-issues {
+    display: flex;
+    flex-direction: column;
+}
+
+.issue-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 13px 2px;
+    border-bottom: 1px solid #e5eae6;
+}
+
+.issue-item:last-child {
+    border-bottom: none;
+}
+
+.issue-item strong {
+    color: #344239;
+    font-size: 13px;
+}
+
+.issue-item p {
+    margin: 4px 0 0;
+}
+
+.issue-item > div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+.empty-state {
+    padding: 18px;
+    color: var(--muted);
+    background: #f8faf8;
+    border: 1px dashed #cbd5cd;
+    border-radius: 3px;
+    text-align: center;
+}
+
+/* 12. Issue status dropdown */
+
+.issue-status-select {
+    min-width: 105px;
+    min-height: 34px;
+    padding: 5px 8px;
+    color: #344239;
+    background: #ffffff;
+    border: 1px solid #bdc9c0;
+    border-radius: 3px;
+}
+
+/* 13. Footer */
+
+.footer {
+    margin-top: 30px;
+    padding: 18px 0 5px;
+    color: #68776d;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* 14. Responsive layout for tablets */
+
+@media (max-width: 1100px) {
+    .main-content {
+        padding: 22px 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .content-card {
+        padding: 16px;
+    }
+}
+
+/* 15. Responsive layout for mobile phones */
+
+@media (max-width: 700px) {
+    .topbar {
+        align-items: flex-start;
+        padding: 13px 15px;
+        gap: 10px;
+    }
+
+    .brand {
+        gap: 9px;
+    }
+
+    .brand-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .brand h1 {
+        font-size: 17px;
+    }
+
+    .brand p {
+        font-size: 11px;
+    }
+
+    .prototype-label {
+        padding: 4px 6px;
+        font-size: 9px;
+    }
+
+    .app-layout {
+        display: block;
+    }
+
+    .sidebar {
+        padding: 10px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .menu-heading {
+        margin: 3px 4px 8px;
+    }
+
+    .sidebar {
+        display: block;
+    }
+
+    .nav-button {
+        display: inline-flex;
+        width: auto;
+        max-width: 100%;
+        margin: 0 3px 5px 0;
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+
+    .nav-button.active {
+        padding-left: 6px;
+    }
+
+    .nav-button span {
+        width: auto;
+    }
+
+    .sidebar-note {
+        margin-top: 10px;
+    }
+
+    .main-content {
+        padding: 19px 12px;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin-bottom: 17px;
+    }
+
+    .page-heading h2 {
+        font-size: 22px;
+    }
+
+    .stats-grid {
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 13px;
+    }
+
+    .stat-card h3 {
+        font-size: 25px;
+    }
+
+    .stat-card p,
+    .stat-card span {
+        font-size: 11px;
+    }
+
+    .content-card {
+        padding: 13px;
+        margin-bottom: 16px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        justify-content: stretch;
+    }
+
+    .form-actions button {
+        flex: 1;
+    }
+
+    .issue-item {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .issue-item > div:last-child {
+        justify-content: flex-start;
+    }
+
+    .footer {
+        margin-top: 20px;
+    }
+}
+
+/* 16. Extra-small phones */
+
+@media (max-width: 380px) {
+    .topbar {
+        flex-direction: column;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .prototype-label {
+        align-self: flex-start;
+    }
+
+    .nav-button {
+        font-size: 11px;
+    }
+
+    .main-content {
+        padding-right: 9px;
+        padding-left: 9px;
+    }
+}

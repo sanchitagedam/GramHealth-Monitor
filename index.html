@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GramHealth Monitor</title>
+
+    <!-- Connect the CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">+</div>
+            <div>
+                <h1>GramHealth Monitor</h1>
+                <p>Rural Healthcare Monitoring System</p>
+            </div>
+        </div>
+
+        <div class="prototype-label">
+            DEMO PROTOTYPE
+        </div>
+    </header>
+
+    <div class="app-layout">
+
+        <!-- Sidebar navigation -->
+        <aside class="sidebar">
+            <p class="menu-heading">MAIN MENU</p>
+
+            <button class="nav-button active"
+                    data-page="dashboard">
+                <span>▦</span> Dashboard
+            </button>
+
+            <button class="nav-button"
+                    data-page="facilities">
+                <span>⌂</span> Health Facilities
+            </button>
+
+            <button class="nav-button"
+                    data-page="reports">
+                <span>▤</span> Status Reports
+            </button>
+
+            <button class="nav-button"
+                    data-page="issues">
+                <span>⚑</span> Issue Tracking
+            </button>
+
+            <button class="nav-button" 
+                    data-page="history">
+                <span>▤</span> Report History
+            </button>
+
+
+            <div class="sidebar-note">
+                <strong>Project Purpose</strong>
+                <p>
+                    Identify rural healthcare shortages
+                    and track their resolution.
+                </p>
+            </div>
+        </aside>
+
+        <!-- Main website content -->
+        <main class="main-content">
+
+            <!-- DASHBOARD PAGE -->
+            <section id="dashboard" class="page active">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">OVERVIEW</p>
+                        <h2>District Dashboard</h2>
+                        <p class="muted">
+                            Monitor the condition of rural health facilities.
+                        </p>
+                    </div>
+
+                    <span class="demo-badge">
+                        Sample Data
+                    </span>
+                </div>
+
+                <div class="stats-grid">
+
+                    <article class="stat-card">
+                        <p>Total Facilities</p>
+                        <h3 id="totalFacilities">0</h3>
+                        <span>Registered health centres</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Facilities Needing Attention</p>
+                        <h3 id="attentionFacilities">0</h3>
+                        <span>Warnings or critical conditions</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Open Issues</p>
+                        <h3 id="openIssues">0</h3>
+                        <span>Issues not yet resolved</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Resolved Issues</p>
+                        <h3 id="resolvedIssues">0</h3>
+                        <span>Issues marked as resolved</span>
+                    </article>
+
+                </div>
+
+                <div class="content-card">
+                    <div class="section-heading">
+                        <div>
+                            <h3>Facility Status Overview</h3>
+                            <p class="muted">
+                                Current condition of registered facilities.
+                            </p>
+                        </div>
+
+                        <button class="secondary-button"
+                                data-go="facilities">
+                            View All Facilities
+                        </button>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Facility</th>
+                                    <th>Location</th>
+                                    <th>Doctors</th>
+                                    <th>Medicine</th>
+                                    <th>Equipment</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="dashboardTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <div class="section-heading">
+                        <div>
+                            <h3>Recent Issues</h3>
+                            <p class="muted">
+                                Shortages and problems requiring attention.
+                            </p>
+                        </div>
+
+                        <button class="secondary-button"
+                                data-go="issues">
+                            Track Issues
+                        </button>
+                    </div>
+
+                    <div id="recentIssues" class="recent-issues">
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- HEALTH FACILITIES PAGE -->
+            <section id="facilities" class="page">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">FACILITY DIRECTORY</p>
+                        <h2>Health Facilities</h2>
+                        <p class="muted">
+                            Search and review rural health centres.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+
+                    <div class="section-heading">
+                        <div>
+                            <h3>Registered Facilities</h3>
+                            <p class="muted">
+                                These records use fictional demonstration data.
+                            </p>
+                        </div>
+                    </div>
+
+                    <input
+                        type="search"
+                        id="facilitySearch"
+                        class="search-input"
+                        placeholder="Search by facility or location..."
+                        aria-label="Search health facilities"
+                    >
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Facility Name</th>
+                                    <th>Block</th>
+                                    <th>Doctors</th>
+                                    <th>Nurses</th>
+                                    <th>Medicine</th>
+                                    <th>Infrastructure</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="facilitiesTable">
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- STATUS REPORTS PAGE -->
+            <section id="reports" class="page">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">FACILITY REPORTING</p>
+                        <h2>Submit Status Report</h2>
+                        <p class="muted">
+                            Report shortages and problems at a health centre.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+
+                    <div class="notice">
+                        <strong>Prototype notice:</strong>
+                        Use fictional information only. Do not enter
+                        real patient or confidential government data.
+                    </div>
+
+                    <form id="reportForm">
+
+                        <div class="form-grid">
+
+                            <div class="form-group full-width">
+                                <label for="reportFacility">
+                                    Select Health Facility
+                                </label>
+
+                                <select id="reportFacility"
+                                        name="facility"
+                                        required>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="doctors">Number of Doctors</label>
+
+                                <input
+                                    type="number"
+                                    id="doctors"
+                                    name="doctors"
+                                    min="0"
+                                    max="500"
+                                    value="2"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nurses">Number of Nurses</label>
+
+                                <input
+                                    type="number"
+                                    id="nurses"
+                                    name="nurses"
+                                    min="0"
+                                    max="1000"
+                                    value="3"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="medicine">Medicine Stock</label>
+
+                                <select id="medicine"
+                                        name="medicine"
+                                        required>
+                                    <option value="Available">Available</option>
+                                    <option value="Low">Low</option>
+                                    <option value="Out of Stock">Out of Stock</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="equipment">Medical Equipment</label>
+
+                                <select id="equipment"
+                                        name="equipment"
+                                        required>
+                                    <option value="Functional">Functional</option>
+                                    <option value="Partially Functional">
+                                        Partially Functional
+                                    </option>
+                                    <option value="Non-functional">
+                                        Non-functional
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="infrastructure">
+                                    Infrastructure
+                                </label>
+
+                                <select id="infrastructure"
+                                        name="infrastructure"
+                                        required>
+                                    <option value="Good">Good</option>
+                                    <option value="Needs Repair">
+                                        Needs Repair
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="services">Health Services</label>
+
+                                <select id="services"
+                                        name="services"
+                                        required>
+                                    <option value="Available">Available</option>
+                                    <option value="Limited">Limited</option>
+                                    <option value="Unavailable">Unavailable</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="reportNotes">
+                                    Additional Notes (Optional)
+                                </label>
+
+                                <textarea
+                                    id="reportNotes"
+                                    name="notes"
+                                    rows="4"
+                                    maxlength="500"
+                                    placeholder="Describe the reported problem..."
+                                ></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="reset"
+                                    class="secondary-button">
+                                Clear Form
+                            </button>
+
+                            <button type="submit"
+                                    class="primary-button">
+                                Submit Status Report
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- ISSUE TRACKING PAGE -->
+            <section id="issues" class="page">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">FOLLOW-UP AND RESOLUTION</p>
+                        <h2>Issue Tracking</h2>
+                        <p class="muted">
+                            Review detected problems and update their status.
+                        </p>
+                    </div>
+
+                    <button id="exportIssues"
+                            class="primary-button">
+                        Export Issues CSV
+                    </button>
+                </div>
+
+                <div class="content-card">
+
+                    <div class="section-heading">
+                        <div>
+                            <h3>Reported Issues</h3>
+                            <p class="muted">
+                                Update an issue when its status changes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Issue</th>
+                                    <th>Facility</th>
+                                    <th>Priority</th>
+                                    <th>Assigned To</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="issuesTable">
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- REPORT HISTORY -->
+            <section id="history" class="page">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">RECORDS</p>
+                        <h2>Report History</h2>
+                        <p class="muted">
+                            Review previously submitted status reports.
+                        </p>
+                    </div>
+
+                    <button id="exportReports"
+                            class="primary-button">
+                        Export Reports CSV
+                    </button>
+                </div>
+
+                <div class="content-card">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Facility</th>
+                                    <th>Submission Date</th>
+                                    <th>Doctors</th>
+                                    <th>Medicine</th>
+                                    <th>Equipment</th>
+                                    <th>Detected Issues</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="reportsTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+
+            <footer class="footer">
+                GramHealth Monitor · Academic Demonstration Prototype
+                <br>
+                All facility records are fictional.
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- Connect the JavaScript file -->
+    <script src="script.js"></script>
+
+</body>
+</html>
